@@ -1,0 +1,357 @@
+---- Minecraft Crash Report ----
+// Hey, that tickles! Hehehe!
+
+Time: 08/01/2022 15:08
+Description: Exception in server tick loop
+
+java.lang.RuntimeException: Mixin transformation of net.minecraft.class_3898 failed
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.getPostMixinClassByteArray(KnotClassDelegate.java:252)
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.tryLoadClass(KnotClassDelegate.java:150)
+	at net.fabricmc.loader.impl.launch.knot.KnotClassLoader.loadClass(KnotClassLoader.java:155)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520)
+	at net.minecraft.class_3215.<init>(class_3215.java:89)
+	at net.minecraft.class_3218.<init>(class_3218.java:220)
+	at net.minecraft.server.MinecraftServer.method_3786(MinecraftServer.java:371)
+	at net.minecraft.server.MinecraftServer.method_3735(MinecraftServer.java:327)
+	at net.minecraft.class_3176.method_3823(class_3176.java:182)
+	at net.minecraft.server.MinecraftServer.method_29741(MinecraftServer.java:657)
+	at net.minecraft.server.MinecraftServer.method_29739(MinecraftServer.java:270)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: org.spongepowered.asm.mixin.transformer.throwables.MixinTransformerError: An unexpected critical error was encountered
+	at org.spongepowered.asm.mixin.transformer.MixinProcessor.applyMixins(MixinProcessor.java:392)
+	at org.spongepowered.asm.mixin.transformer.MixinTransformer.transformClass(MixinTransformer.java:234)
+	at org.spongepowered.asm.mixin.transformer.MixinTransformer.transformClassBytes(MixinTransformer.java:202)
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.getPostMixinClassByteArray(KnotClassDelegate.java:247)
+	... 11 more
+Caused by: org.spongepowered.asm.mixin.throwables.MixinApplyError: Mixin [krypton.mixins.json:shared.network.avoidwork.ThreadedAnvilChunkStorageMixin] from phase [DEFAULT] in config [krypton.mixins.json] from mod [krypton] FAILED during APPLY
+	at org.spongepowered.asm.mixin.transformer.MixinProcessor.handleMixinError(MixinProcessor.java:638)
+	at org.spongepowered.asm.mixin.transformer.MixinProcessor.handleMixinApplyError(MixinProcessor.java:589)
+	at org.spongepowered.asm.mixin.transformer.MixinProcessor.applyMixins(MixinProcessor.java:379)
+	... 14 more
+Caused by: org.spongepowered.asm.mixin.injection.throwables.InvalidInjectionException: InjectionPoint(Shift)[@At("INVOKE")] on net/minecraft/class_3898::sendChunkDataPackets$beSmart with priority 1000 cannot inject into net/minecraft/class_3898::method_18715(Lnet/minecraft/class_3222;Lorg/apache/commons/lang3/mutable/MutableObject;Lnet/minecraft/class_2818;)V merged by qouteall.imm_ptl.core.mixin.common.chunk_sync.MixinThreadedAnvilChunkStorage_C with priority 1100 [PREINJECT Applicator Phase -> krypton.mixins.json:shared.network.avoidwork.ThreadedAnvilChunkStorageMixin -> Prepare Injections ->  -> handler$bmc000$sendChunkDataPackets$beSmart(Lnet/minecraft/class_3222;Lorg/apache/commons/lang3/mutable/MutableObject;Lnet/minecraft/class_2818;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfo;)V -> Prepare]
+	at org.spongepowered.asm.mixin.injection.code.Injector.findTargetNodes(Injector.java:305)
+	at org.spongepowered.asm.mixin.injection.code.Injector.find(Injector.java:240)
+	at org.spongepowered.asm.mixin.injection.struct.InjectionInfo.prepare(InjectionInfo.java:421)
+	at org.spongepowered.asm.mixin.transformer.MixinTargetContext.prepareInjections(MixinTargetContext.java:1338)
+	at org.spongepowered.asm.mixin.transformer.MixinApplicatorStandard.prepareInjections(MixinApplicatorStandard.java:1043)
+	at org.spongepowered.asm.mixin.transformer.MixinApplicatorStandard.applyMixin(MixinApplicatorStandard.java:393)
+	at org.spongepowered.asm.mixin.transformer.MixinApplicatorStandard.apply(MixinApplicatorStandard.java:325)
+	at org.spongepowered.asm.mixin.transformer.TargetClassContext.apply(TargetClassContext.java:421)
+	at org.spongepowered.asm.mixin.transformer.TargetClassContext.applyMixins(TargetClassContext.java:403)
+	at org.spongepowered.asm.mixin.transformer.MixinProcessor.applyMixins(MixinProcessor.java:363)
+	... 14 more
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- System Details --
+Details:
+	Minecraft Version: 1.18.1
+	Minecraft Version ID: 1.18.1
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 17.0.1, Azul Systems, Inc.
+	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode, sharing), Azul Systems, Inc.
+	Memory: 1384196192 bytes (1320 MiB) / 2281701376 bytes (2176 MiB) up to 10737418240 bytes (10240 MiB)
+	CPUs: 32
+	Processor Vendor: AuthenticAMD
+	Processor Name: AMD Ryzen 9 5950X 16-Core Processor            
+	Identifier: AuthenticAMD Family 25 Model 33 Stepping 0
+	Microarchitecture: Zen 3
+	Frequency (GHz): 3,40
+	Number of physical packages: 1
+	Number of physical CPUs: 16
+	Number of logical CPUs: 32
+	Graphics card #0 name: NVIDIA GeForce RTX 3080 Ti
+	Graphics card #0 vendor: NVIDIA (0x10de)
+	Graphics card #0 VRAM (MB): 4095,00
+	Graphics card #0 deviceId: 0x2208
+	Graphics card #0 versionInfo: DriverVersion=30.0.14.9709
+	Memory slot #0 capacity (MB): 8192,00
+	Memory slot #0 clockSpeed (GHz): 3,60
+	Memory slot #0 type: DDR4
+	Memory slot #1 capacity (MB): 8192,00
+	Memory slot #1 clockSpeed (GHz): 3,60
+	Memory slot #1 type: DDR4
+	Memory slot #2 capacity (MB): 8192,00
+	Memory slot #2 clockSpeed (GHz): 3,60
+	Memory slot #2 type: DDR4
+	Memory slot #3 capacity (MB): 8192,00
+	Memory slot #3 clockSpeed (GHz): 3,60
+	Memory slot #3 type: DDR4
+	Virtual memory max (MB): 43433,88
+	Virtual memory used (MB): 13469,24
+	Swap memory total (MB): 10752,00
+	Swap memory used (MB): 0,00
+	JVM Flags: 1 total; -Xmx10G
+	Fabric Mods: 
+		additionaladditions: Additional Additions 3.0.1
+		additionalbars: Additional Bars 2.2.1
+		adorn: Adorn 3.1.0+1.18.1
+		advanced_runtime_resource_pack: Runtime Resource Pack 0.2.9
+		adventurez: AdventureZ 1.4.6
+		ae2: Applied Energistics 2 10.0.0-beta.4
+		amplified_nether: Amplified Nether for Fabric 1.0.1
+		animal_feeding_trough: Animal Feeding Trough 1.0.3+1.18.1
+		aqupdcaracal: Caracal mob 1.18-1.3.5.1
+		aqupdgrizzly: Grizzly Bear mob 1.18-1.2.1
+		arcanus: Arcanus 1.25
+		architects_palette: Architect's Palette Fabric 1.3
+		architectury: Architectury 3.4.9
+		attributefix: AttributeFix 13.0.3
+		backslot: BackSlot 1.2.3
+		backslotaddon: BackSlot Addon 1.0.7
+		balm-fabric: Balm 2.4.0+0
+		basicshields: Basic Shields [Fabric] 1.1.1-1.18.1
+		bcc: BetterCompatibilityChecker fabric-1.0.4
+		bclib: BCLib 1.2.1
+		betteranimalsplus: Better Animals Plus 1.18.1-11.0.3
+		betterend: Better End 1.0.0
+		betternether: Better Nether 6.0.8
+		blockus: Blockus 2.3.4+1.18.1
+		blue_endless_jankson: jankson 1.2.1
+		bosses_of_mass_destruction: Bosses of Mass Destruction (Beta) 1.3.3-1.18
+		bountiful: Bountiful 2.0.1
+		campchair: Camp Chair 1.0.0
+		capybara: Capybara 1.0.0
+		cardinal-components-base: Cardinal Components API (base) 4.0.1
+		cardinal-components-entity: Cardinal Components API (entities) 4.0.1
+		cardinal-components-item: Cardinal Components API (items) 4.0.1
+		cardinal-components-world: Cardinal Components API (worlds) 4.0.0
+		carrier: Carrier 1.9.0
+		cloth-basic-math: cloth-basic-math 0.6.0
+		cloth-config: Cloth Config v6 6.1.48
+		clumps: Clumps 8.0.4
+		com_electronwill_night-config_core: core 3.6.3
+		com_electronwill_night-config_toml: toml 3.6.3
+		com_eliotlash_mclib_mclib: mclib 18
+		com_eliotlash_molang_molang: molang 18
+		com_moandjiezana_toml_toml4j: toml4j 0.7.2
+		com_typesafe_config: config 1.4.1
+		com_velocitypowered_velocity-native: velocity-native 1.1.0-SNAPSHOT
+		comforts: Comforts 1.0.0-1.18
+		companion: Companion 1.1.0
+		confabricate: confabricate 2.2.0-SNAPSHOT+4.1.1
+		consistency_plus: Consistency Plus 0.4.3+1.18
+		crawl: Crawl 0.10.0
+		croptopia: Croptopia 1.8.0
+		customstars: Custom Stars 0.7+1.18
+		dark-enchanting: Dark Enchanting 0.6.3+1.18
+		darkpaintings: DarkPaintings 9.0.2
+		dawn: Dawn API 3.2.0
+		deathlog: DeathLog 0.2.4+1.18
+		deepslatecutting: Deepslate Cutting 1.3.0
+		dragonloot: DragonLoot 1.0.9
+		dripstone_fluid_lib: Dripstone Fluid Lib 1.1.1
+		dungeons_arise: When Dungeons Arise 2.1.49c-fabric
+		dusk: Dusk Mod 1.18-1.7
+		dynview: Dynamic View Mod 1.18-1.5
+		earthtojavamobs: Earth2Java 1.7.4+1.18
+		easymagic: Easy Magic 3.2.1
+		elytratrinket: Elytra Trinket 3.0.0-1.18.1
+		endgoblintraders: End Goblin Traders 1.4.2
+		enhancedcelestials: Enhanced Celestials 2.0.6
+		experiencebugfix: Experience Bug Fix 18
+		fabric: Fabric API 0.45.0+1.18
+		fabric-api-base: Fabric API Base 0.4.1+b4f4f6cd65
+		fabric-api-lookup-api-v1: Fabric API Lookup API (v1) 1.5.0+17be577f65
+		fabric-biome-api-v1: Fabric Biome API (v1) 6.0.1+ded849a965
+		fabric-command-api-v1: Fabric Command API (v1) 1.1.6+3ac43d9565
+		fabric-commands-v0: Fabric Commands (v0) 0.2.5+b4f4f6cd65
+		fabric-containers-v0: Fabric Containers (v0) 0.1.18+d154e2c665
+		fabric-content-registries-v0: Fabric Content Registries (v0) 0.4.5+6f53a73d65
+		fabric-crash-report-info-v1: Fabric Crash Report Info (v1) 0.1.8+3ac43d9565
+		fabric-dimensions-v1: Fabric Dimensions API (v1) 2.1.7+43d2957165
+		fabric-entity-events-v1: Fabric Entity Events (v1) 1.4.5+6b21378a65
+		fabric-events-interaction-v0: Fabric Events Interaction (v0) 0.4.16+bfa23f1765
+		fabric-events-lifecycle-v0: Fabric Events Lifecycle (v0) 0.2.6+b4f4f6cd65
+		fabric-game-rule-api-v1: Fabric Game Rule API (v1) 1.0.10+3ac43d9565
+		fabric-item-api-v1: Fabric Item API (v1) 1.3.0+691a79b565
+		fabric-item-groups-v0: Fabric Item Groups (v0) 0.3.3+3ac43d9565
+		fabric-language-kotlin: Fabric Language Kotlin 1.7.1+kotlin.1.6.10
+		fabric-lifecycle-events-v1: Fabric Lifecycle Events (v1) 1.4.10+c15ca33565
+		fabric-loot-tables-v1: Fabric Loot Tables (v1) 1.0.8+3ac43d9565
+		fabric-mining-level-api-v1: Fabric Mining Level API (v1) 1.0.3+3ac43d9565
+		fabric-mining-levels-v0: Fabric Mining Levels (v0) 0.1.7+b4f4f6cd65
+		fabric-networking-api-v1: Fabric Networking API (v1) 1.0.18+3ac43d9565
+		fabric-networking-v0: Fabric Networking (v0) 0.3.5+b4f4f6cd65
+		fabric-object-builder-api-v1: Fabric Object Builder API (v1) 1.11.0+3b82842e65
+		fabric-object-builders-v0: Fabric Object Builders (v0) 0.7.8+3ac43d9565
+		fabric-particles-v1: Fabric Particles (v1) 0.2.9+526dc1ac65
+		fabric-permissions-api-v0: fabric-permissions-api 0.1-SNAPSHOT
+		fabric-registry-sync-v0: Fabric Registry Sync (v0) 0.8.6+533be9ba65
+		fabric-rendering-data-attachment-v1: Fabric Rendering Data Attachment (v1) 0.3.4+7242e9d765
+		fabric-rendering-fluids-v1: Fabric Rendering Fluids (v1) 0.1.18+3ac43d9565
+		fabric-resource-loader-v0: Fabric Resource Loader (v0) 0.4.11+3ac43d9565
+		fabric-screen-handler-api-v1: Fabric Screen Handler API (v1) 1.1.11+3ac43d9565
+		fabric-structure-api-v1: Fabric Structure API (v1) 2.0.8+295197a765
+		fabric-tag-extensions-v0: Fabric Tag Extensions (v0) 1.2.5+3ac43d9565
+		fabric-tool-attribute-api-v1: Fabric Tool Attribute API (v1) 1.3.4+7de09f5565
+		fabric-transfer-api-v1: Fabric Transfer API (v1) 1.5.6+b4f4f6cd65
+		fabricloader: Fabric Loader 0.12.12
+		fabricshieldlib: Fabric Shield Lib 1.4.5-1.18
+		fake-player-api: Fake Player API 0.3.0
+		fallingtree: FallingTree 2.16.1
+		farmersdelight: Farmer's Delight 1.18.1-0.2.0
+		farsight: Farsight Mod 1.18-1.5
+		fastfurnace: FastFurnace 1.18-4
+		feature_nbt_deadlock_be_gone: Feature NBT Deadlock Be Gone - Fabric $version
+		ferritecore: FerriteCore 4.0.0
+		fiber: fiber 0.23.0-2
+		fireworkfrenzy: Firework Frenzy 1.7
+		floral_flair: Floral Flair 1.1.0
+		forgeconfigapiport: Forge Config API Port 3.1.0
+		forgottenrecipes: ForgottenRecipes 1.18.1-1.0.0
+		friendsandfoes: Friends&Foes 1.0.2
+		geckolib3: Geckolib 3.0.23
+		geodes: More Geodes 1.2.0
+		go-fish: Go Fish 1.4.1-1.18.1
+		goblintraders: Goblin Traders 1.4.1
+		graveyard: The Graveyard 1.1
+		guild: Guild 0.3.6
+		harvest_scythes: Harvest Scythes 2.4.0
+		heartbond: Heartbond 1.2.0
+		horseinfo: Horse Info 0.4.1-1.18
+		horsestatsvanilla: Horse Stats Vanilla 4.1.10
+		iceberg: Iceberg 1.0.27
+		imm_ptl_core: Immersive Portals Core 1.1.8
+		immersive_portals: Immersive Portals 1.1.8
+		infusion_table: Infusion Table 1.0.5
+		inmis: Inmis 2.4.0-1.18
+		io_leangen_geantyref_geantyref: geantyref 1.3.11
+		ironchests: Iron Chests for Fabric 1.5.3
+		jankson: Jankson 4.0.0+j1.2.0
+		java: OpenJDK 64-Bit Server VM 17
+		kambrik: Kambrik 3.0.0
+		kiwi: Kiwi 5.2.2
+		kleeslabs: KleeSlabs 11.0.0
+		krypton: Krypton 0.1.6
+		kyrptconfig: Kyrpt Config 1.2.3-1.18
+		lazydfu: LazyDFU 0.1.2
+		levelz: LevelZ 1.1.4
+		libcd: LibCapableData 3.0.3+1.16.3
+		libgui: LibGui 5.2.0+1.18
+		libninepatch: LibNinePatch 1.1.0
+		lithium: Lithium 0.7.6
+		lovely_snails: Lovely Snails 1.0.3+1.18
+		maelstrom_library: Maelstrom Library 1.2.3-1.18-rc3
+		mavm: More Axolotl Variants Mod 1.0.7a
+		maybe-more-data: Maybe More Data 1.0.0-1.18
+		megane: megane 6.2.0
+		megane-applied-energistics-2: megane-applied-energistics-2 6.2.0+10.0.0-alpha.1
+		megane-base: megane-base 6.2.0
+		megane-fabric-transfer: megane-fabric-transfer 6.2.0+1.5.4-b4f4f6cda9
+		megane-reborn-core: megane-reborn-core 6.2.0+5.1.0-beta.2
+		megane-runtime: megane-runtime 6.2.0
+		megane-team-reborn-energy: megane-team-reborn-energy 6.2.0+2.0.0-beta1
+		megane-tech-reborn: megane-tech-reborn 6.2.0+5.1.0-beta.2
+		megane-vanilla: megane-vanilla 6.2.0+1.18.1
+		midnightlib: MidnightLib 0.3.1
+		milk: Milk Lib 0.1.3
+		milk_plus: Milk+ 2.0.0
+		minecraft: Minecraft 1.18.1
+		mm: Manningham Mills 2.3
+		more-axolotls: More Axolotls 1.0.2
+		morebannerfeatures: More Banner Features 1.1.3
+		morerespawnanchors: More Respawn Anchors 1.0.3
+		morevillagers-fabric: MoreVillagersFabric 3.1.0-SNAPSHOT
+		multipart_entities: MultipartEntities 1.1.4-1.18-rc3
+		naturescompass: Nature's Compass 1.18.1-2.0.2-fabric
+		nears: Nears 1.1.2
+		no_null_processors: No Null Processors - Fabric 2.0.0+1.18
+		omega-config: OmegaConfig 1.1.0
+		onsoulfire: On Soul Fire 1.18-1
+		openloader: OpenLoader 11.0.3
+		org_jetbrains_kotlin_kotlin-reflect: kotlin-reflect 1.6.10
+		org_jetbrains_kotlin_kotlin-stdlib: kotlin-stdlib 1.6.10
+		org_jetbrains_kotlin_kotlin-stdlib-jdk7: kotlin-stdlib-jdk7 1.6.10
+		org_jetbrains_kotlin_kotlin-stdlib-jdk8: kotlin-stdlib-jdk8 1.6.10
+		org_jetbrains_kotlinx_kotlinx-coroutines-core-jvm: kotlinx-coroutines-core-jvm 1.5.2
+		org_jetbrains_kotlinx_kotlinx-coroutines-jdk8: kotlinx-coroutines-jdk8 1.5.2
+		org_jetbrains_kotlinx_kotlinx-serialization-cbor-jvm: kotlinx-serialization-cbor-jvm 1.3.1
+		org_jetbrains_kotlinx_kotlinx-serialization-core-jvm: kotlinx-serialization-core-jvm 1.3.1
+		org_jetbrains_kotlinx_kotlinx-serialization-json-jvm: kotlinx-serialization-json-jvm 1.3.1
+		org_spongepowered_configurate-core: configurate-core 4.1.1
+		org_spongepowered_configurate-extra-dfu4: configurate-extra-dfu4 4.1.1
+		org_spongepowered_configurate-gson: configurate-gson 4.1.1
+		org_spongepowered_configurate-hocon: configurate-hocon 4.1.1
+		owo: oωo 0.3.13+1.18
+		oxidized: Oxidized 1.5.2
+		paintings: Paintings++ 1.0.0.6
+		patchouli: Patchouli 1.18.1-63-FABRIC
+		phosphor: Phosphor 0.8.1
+		plushies: Plushie Mod 1.1
+		puzzleslib: Puzzles Lib 3.1.3
+		q_misc_util: QMiscUtil 1.1.8
+		quartzelv: Quartz Elevator 2.0.1+1.18
+		quickshulker: Quick Shulker 1.3.1-1.18
+		reborncore: Reborn Core 5.1.0-beta.4
+		repurposed_structures: Repurposed Structures 3.1.13+1.18.1
+		rocks: This Rocks! 1.5.2
+		runelic: Runelic 10.0.1
+		sculk_worm: Sculk Worm 0.1.3
+		seasons: Fabric Seasons 1.3-BETA+1.18
+		seedfix: Seed Fix 1.0.0
+		sentimentality3: Sentimentality 3 1.3.6
+		shulkerboxtooltip: Shulker Box Tooltip 3.0.5+1.18
+		shulkerutils: shulkerutils 1.0.4-1.18
+		skinnedlanterns: Skinned Lanterns 1.2.0+build.12
+		skylorlib: SkyLib 1.0.6
+		snowpig: Snow Pig 1.0.0+build.33
+		snowrealmagic: Snow! Real Magic! 3.1.0
+		someforgepatchesported: Some Forge Patches Ported 1.0.2
+		spark: spark 1.7.1
+		stonecutter_recipe_tags: Stonecutter Recipe Tags 2.0.0
+		stoneholm: Stoneholm 1.4.1
+		team_reborn_energy: Energy 2.0.0-beta1
+		techreborn: Tech Reborn 5.1.0-beta.4
+		terraform-shapes-api-v1: Terraform Shapes API (v1) 2.1.0
+		terraform-wood-api-v1: Terraform Wood API (v1) 2.0.2
+		terralith: Terralith for Fabric 2.0.8
+		terrarianslimes: Terrarian Slimes 1.1-BETA+1.18
+		the_bumblezone: The Bumblezone - Fabric 4.1.1+1.18.1
+		thonkutil: ThonkUtil 2.6.0+1.18
+		thonkutil-base: ThonkUtil Base 1.4.0+6a7a08aec8
+		thonkutil-capes-v1: ThonkUtil Capes (v1) 1.2.0+a46c8f89c8
+		thonkutil-customization: ThonkUtil Customization (v1) 1.0.1+6a7a08aec8
+		thonkutil-legacy: ThonkUtil Legacy 1.0.7+6fa117f8c8
+		thonkutil-potions-v0: ThonkUtil Potions (v0) 1.2.5+6a7a08aec8
+		thonkutil-trades-v1: ThonkUtil Trades (v1) 1.1.5+6a7a08aec8
+		tinyskeletons: Tiny Skeletons 3.1.0
+		toms_storage: Tom's Simple Storage Mod 1.1.19
+		toolstats: ToolStats 8.0.1
+		torchbowmod: TorchBowMod 1.0
+		totw_additions: Towers of the Wild: Additions 1.1.0
+		towers_of_the_wild_reworked: Towers of the Wild: Reworked 2.1.0
+		tradingpost: Trading Post 3.1.2
+		trinketofundying: Trinket of Undying 2.0.1-1.18
+		trinkets: Trinkets 3.1.0
+		tweed4_annotated: tweed4_annotated 1.2.0
+		tweed4_base: tweed4_base 1.3.1
+		tweed4_data: tweed4_data 1.2.0
+		tweed4_data_hjson: tweed4_data_hjson 1.1.0
+		twigs: Twigs 1.1.2
+		twm: The Wild Mod 0.2
+		universal_ores: Universal Ores 1.2.1
+		unvotedandshelved: Unvoted & Shelved 1.0.4
+		upgradedshulkers: Upgraded Shulkers 1.1.1-1.18
+		urns: Urns 1.0.1
+		vanilla_degus: Vanilla Degus 1.3.0
+		veinmining: Vein Mining 0.0.11-1.18
+		villager-hats: Villager Hats Mod 1.2.1
+		villagernames: Villager Names 2.0.2
+		visualworkbench: Visual Workbench 3.1.0
+		voidtotem: VoidTotem (Fabric) 1.18.1-1.1.0
+		voidz: VoidZ 1.0.5
+		wandering_collector: Wandering Collector 1.0.3+mc1.18-rc3
+		waystones: Waystones 9.0.1
+		wthit: wthit 4.4.0
+		xlpackets: XLPackets 2.1-1.17.1
+		xp_storage: XP Storage 1.4.3+1.18
+		xp_storage_trinkets: XP Storage - Trinkets 0.1+1.18
+		yigd: You're in Grave Danger 1.2.10
+	Server Running: true
+	Player Count: 0 / 20; []
+	Data Packs: vanilla, Fabric Mods, data/Repurposed_Structures-More_Villagers_v3.zip, data/ichphilipp-s-endcity-v1-1-1-16-2.zip (incompatible)
+	Is Modded: Definitely; Server brand changed to 'fabric'
+	Type: Dedicated Server (map_server.txt)
